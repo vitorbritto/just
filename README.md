@@ -43,7 +43,7 @@ Feel free to change the configuration to be whatever you want. Just modify the `
 > Use `node just --help` for more details and instructions.
 
 ## Contributing
-Feel free to [contribute](https://github.com/gruntbrasil/just/pulls) with this project or leave a [suggestion](https://github.com/gruntbrasil/just/issues).
+Feel free to [contribute](https://github.com/vitorbritto/just/pulls) with this project or leave a [suggestion](https://github.com/vitorbritto/just/issues).
 
 ## Acknowledgments
 This script was inspired by [./task.js](https://gist.github.com/substack/8313379) and so many others articles from [dailyjs.com](dailyjs.com), [2ality](2ality.com) and [shapeshed.com](shapeshed.com).
