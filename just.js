@@ -99,11 +99,12 @@ function build() {
         config.jshint();
         config.minify();
         config.compile();
-        config.template();
     });
 
     // Run tasks
     just.start(['build']);
+
+    console.log('✔ done'.green);
 }
 
 
