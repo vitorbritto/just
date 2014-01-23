@@ -1,5 +1,5 @@
 
-<img src="https://github.com/vitorbritto/just/blob/gh-pages/assets/images/logo.png" alt="Just" align="center">
+<img src="https://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="center">
 <p style="text-align: center;">A ridiculously simple task runner.</p>
 
 ## Getting Started
