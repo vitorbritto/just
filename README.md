@@ -7,7 +7,11 @@ Alright, I know. Another way to perform automation tasks. But it never hurts to 
 > NOTE: This is a work in progress and I will likely add more functionality in the future.
 
 ### Features
-This build script is capable of processing and minifying stylus files and compressing and minifying JavaScript files.
+This build script is capable of processing and minifying stylus files and compressing and minifying JavaScript files. It uses:
+
+- [JSHint]()
+- [Uglify]()
+- [Stylus]()
 
 ### Installation
 
@@ -26,8 +30,8 @@ npm install
 chmod u+x just.js
 ```
 
-[ 4 ] - Install tasks dependencies: `./just npm` *[!]* <br/>
-[ 5 ] - Generate the scaffolding for your project: `./just build` *[!]* <br/>
+[ 4 ] - Install tasks dependencies: `./just npm` * <br/>
+[ 5 ] - Generate the scaffolding for your project: `./just build` * <br/>
 [ 6 ] - You're ready to go! :)
 
 #### Task Options
@@ -35,7 +39,7 @@ chmod u+x just.js
 - Build: `./just run`
 - Watch: `./just watch`
 
-> [!] - When you run the script for the first time!
+> * - When you run the script for the first time!
 
 ### Configuration
 Feel free to change the configuration to be whatever you want. Just modify the `config` properties/methods in `./lib/config.js` file.
@@ -46,7 +50,7 @@ Feel free to change the configuration to be whatever you want. Just modify the `
 Feel free to [contribute](https://github.com/vitorbritto/just/pulls) with this project or leave a [suggestion](https://github.com/vitorbritto/just/issues).
 
 ## Acknowledgments
-This script was inspired by [./task.js](https://gist.github.com/substack/8313379) and so many others articles from [dailyjs.com](dailyjs.com), [2ality](2ality.com) and [shapeshed.com](shapeshed.com).
+This script was inspired by [./task.js](https://gist.github.com/substack/8313379) and so many others articles from [dailyjs.com](http://dailyjs.com), [2ality](http://2ality.com) and [shapeshed.com](http://shapeshed.com).
 
 
 ## License
