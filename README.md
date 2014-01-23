@@ -9,9 +9,9 @@ Alright, I know. Another way to perform automation tasks. But it never hurts to 
 ### Features
 This build script is capable of processing and minifying stylus files and compressing and minifying JavaScript files. It uses:
 
-- [JSHint]()
-- [Uglify]()
-- [Stylus]()
+- [JSHint](https://npmjs.org/package/jshint)
+- [Uglify](https://npmjs.org/package/uglify-js)
+- [Stylus](https://npmjs.org/package/stylus)
 
 ### Installation
 
