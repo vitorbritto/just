@@ -1,5 +1,6 @@
-# Just
-A ridiculously simple task runner.
+
+<img src="https://github.com/vitorbritto/just/blob/gh-pages/assets/images/logo.png" alt="Just" align="center">
+<p style="text-align: center;">A ridiculously simple task runner.</p>
 
 ## Getting Started
 Alright, I know. Another way to perform automation tasks. But it never hurts to have options, right? :)
