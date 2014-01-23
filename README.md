@@ -11,7 +11,7 @@ This build script is capable of processing and minifying stylus files and compre
 
 ### Installation
 
-[ 1 ] - First of all, make sure you have [Node.js](http://nodejs.org/) installed.
+[ 1 ] - First of all, make sure you have [Node.js](http://nodejs.org/) installed. <br/>
 [ 2 ] - Clone this repository and create your project folder
 
 ```bash
@@ -26,8 +26,8 @@ npm install
 chmod u+x just.js
 ```
 
-[ 4 ] - Install tasks dependencies: `./just npm` *[!]*
-[ 5 ] - Generate the scaffolding for your project: `./just build` *[!]*
+[ 4 ] - Install tasks dependencies: `./just npm` *[!]* <br/>
+[ 5 ] - Generate the scaffolding for your project: `./just build` *[!]* <br/>
 [ 6 ] - You're ready to go! :)
 
 #### Task Options
