@@ -33,14 +33,14 @@ npm install
 chmod u+x just.js
 ```
 
-4 - Install tasks dependencies: `./just npm` ! <br/>
-5 - Generate the scaffolding for your project: `./just build` ! <br/>
+4 - Install tasks dependencies: `./just.js npm` ! <br/>
+5 - Generate the scaffolding for your project: `./just.js build` ! <br/>
 6 - You're ready to go! :)
 
 **Task Options**
 
-- Build: `./just run`
-- Watch: `./just watch`
+- Build: `./just.js run`
+- Watch: `./just.js watch`
 
 
 > ! When you run the script for the first time!
@@ -48,7 +48,7 @@ chmod u+x just.js
 ## Configuration
 Feel free to change the configuration to be whatever you want. Just modify the `config` properties/methods in `./lib/config.js` file.
 
-> Use `./just -h` for more details and instructions.
+> Use `./just.js -h` for more details and instructions.
 
 ## Contributing
 Feel free to [contribute](https://github.com/vitorbritto/just/pulls) with this project or leave a [suggestion](https://github.com/vitorbritto/just/issues).
