@@ -7,11 +7,11 @@
 // Modules
 var exec   = require('child_process').exec,
     cmd    = require('commander'),
-    cl     = require('colors'),
     config = require('./lib/config.js'),
     Just   = require('orchestrator'),
     just   = new Just();
 
+require('colors');
 
 // =====================================================
 // CLI Commands
@@ -45,7 +45,7 @@ cmd
 cmd.parse(process.argv);
 
 if (process.argv.length === 2) {
-    command.help();
+    cmd.help();
 }
 
 
