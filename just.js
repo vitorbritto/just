@@ -78,7 +78,7 @@ function install() {
 
     var globals = config.dependencies;
     globals.forEach(function (mods) {
-        exec('npm -g ' + mods);
+        exec('npm install -g ' + mods);
     });
 
     console.log('✔ done'.green);
