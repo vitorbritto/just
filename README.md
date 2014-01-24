@@ -6,7 +6,7 @@ Alright, I know. Another way to perform automation tasks. But it never hurts to 
 
 **Features**
 
-This build script is capable of processing and minifying stylus files and compressing and minifying JavaScript files. 
+This build script is capable of processing and minifying stylus files and compressing and minifying JavaScript files.
 
 **What's included?**
 
@@ -48,7 +48,7 @@ chmod u+x just.js
 ## Configuration
 Feel free to change the configuration to be whatever you want. Just modify the `config` properties/methods in `./lib/config.js` file.
 
-> Use `node just --help` for more details and instructions.
+> Use `./just -h` for more details and instructions.
 
 ## Contributing
 Feel free to [contribute](https://github.com/vitorbritto/just/pulls) with this project or leave a [suggestion](https://github.com/vitorbritto/just/issues).
