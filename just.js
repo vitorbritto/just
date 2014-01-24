@@ -5,7 +5,8 @@
 // =====================================================
 
 // Modules
-var exec   = require('child_process').exec,
+var sh     = require('shelljs'),
+    os     = require('os').platform(),
     cmd    = require('commander'),
     config = require('./lib/config.js'),
     Just   = require('orchestrator'),
@@ -55,15 +56,21 @@ if (process.argv.length === 2) {
 
 function scaffold() {
 
-    console.log('→ Building'.cyan);
+    sh.echo('→ Building'.cyan);
 
-    exec('mkdir -p ' + [config.app_style, config.app_script, config.public_style, config.public_script].join(' '));
-    exec('cp lib/template/style.styl ' + config.app_style);
-    exec('cp lib/template/main.js ' + config.app_script);
-    exec('cp lib/template/style.css ' + config.public_style);
-    exec('cp lib/template/index.html ' + config.public_view);
+    sh.mkdir('-p', [
+        config.app_style,
+        config.app_script,
+        config.public_style,
+        config.public_script
+        ]
+    );
+    sh.cp('-rf', './lib/template/style.styl', config.app_style);
+    sh.cp('-rf', './lib/template/main.js', config.app_script);
+    sh.cp('-rf', './lib/template/style.css', config.public_style);
+    sh.cp('-rf', './lib/template/index.html', config.public_view);
 
-    console.log('✔ done'.green);
+    sh.echo('✔ done'.green);
 
 }
 
@@ -74,14 +81,23 @@ function scaffold() {
 
 function install() {
 
-    console.log('→ Installing'.cyan);
+    sh.echo('→ Installing'.cyan);
 
-    var globals = config.dependencies;
-    globals.forEach(function (mods) {
-        exec('npm install -g ' + mods);
-    });
+    var dependencies = config.dependencies;
 
-    console.log('✔ done'.green);
+    dependencies.forEach(function (deps) {
+            if (!sh.which(deps)) {
+                if (os === 'darwin') {
+                    sh.exec('sudo npm install -g ' + deps);
+                } else {
+                    sh.exec('npm install -g ' + deps);
+                }
+            } else {
+                sh.echo('→ ' + deps + ' already installed'.yellow);
+            }
+        });
+
+    sh.echo('✔ done'.green);
 }
 
 
@@ -91,8 +107,8 @@ function install() {
 
 function build() {
 
-    console.log('→ Runnning'.cyan);
-    console.log('');
+    sh.echo('→ Runnning'.cyan);
+    sh.echo('');
 
     // Script task
     just.add('build', function() {
@@ -104,7 +120,7 @@ function build() {
     // Run tasks
     just.start(['build']);
 
-    console.log('✔ done'.green);
+    sh.echo('✔ done'.green);
 }
 
 
@@ -129,7 +145,7 @@ function watch() {
     // Run tasks
     just.start(['watch', 'build']);
 
-    console.log('→ Watching for changes...'.cyan);
-    console.log('');
-    console.log('→ Press CTRL+C to exit'.yellow);
+    sh.echo('→ Watching for changes...'.cyan);
+    sh.echo('');
+    sh.echo('→ Press CTRL+C to exit'.yellow);
 }
