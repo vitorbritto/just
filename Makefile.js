@@ -12,7 +12,7 @@
 require('shelljs/make');
 require('colors');
 
-var config = require('./lib/config.js');
+var config = require('./lib/config');
 
 
 // =============================================================================
@@ -87,6 +87,6 @@ target.build = function() {
     echo('✔ Public files has been output to: '.cyan + config.public_view);
 
     // Lastly, avoiding to interrupt the process
-    rm('-rf', ['make.js']);
+    rm('-rf', ['Makefile.js']);
 
 };
