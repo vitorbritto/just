@@ -29,7 +29,7 @@ cd projectname
 3 - Install dependencies and make the script executable
 
 ```bash
-// you need admin permission or use `sudo` to install dependencies
+# you need admin permission or use sudo to install dependencies
 npm i jshint stylus browser-sync uglify-js -g
 chmod u+x just.js
 ```
