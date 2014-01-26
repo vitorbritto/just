@@ -18,13 +18,6 @@ require('colors');
 // CLI Commands
 // =====================================================
 
-// Create Structure
-cmd
-    .command('build')
-    .description('Create a basic Structure')
-    .action(scaffold);
-
-// Tasks
 cmd
     .command('run')
     .description('Run lint, minify and compile tasks')
@@ -42,32 +35,6 @@ cmd.parse(process.argv);
 if (process.argv.length === 2) {
     cmd.help();
 }
-
-
-// =====================================================
-// Create a basic Structure
-// =====================================================
-
-function scaffold() {
-
-    sh.echo('→ Building'.cyan);
-
-    sh.mkdir('-p', [
-        config.app_style,
-        config.app_script,
-        config.public_style,
-        config.public_script
-        ]
-    );
-    sh.cp('-rf', './lib/template/style.styl', config.app_style);
-    sh.cp('-rf', './lib/template/main.js', config.app_script);
-    sh.cp('-rf', './lib/template/style.css', config.public_style);
-    sh.cp('-rf', './lib/template/index.html', config.public_view);
-
-    sh.echo('✔ done'.green);
-
-}
-
 
 // =====================================================
 // Build Task
