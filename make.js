@@ -77,12 +77,11 @@ target.build = function() {
     // Copy files
     cp('-rf', './lib/template/style.styl', config.app_style);
     cp('-rf', './lib/template/main.js', config.app_script);
-    cp('-rf', './lib/template/style.css', config.public_style);
     cp('-rf', './lib/template/index.html', config.public_view);
     cp('-rf', './lib/config.js', './');
 
     // Removing stuff you don't want
-    rm('-rf', ['./.git', './lib' , '.gitignore', 'README.md', '.travis.yml']);
+    rm('-rf', ['./.git', './lib' , '.gitignore', 'README.md', '.travis.yml', 'LICENSE']);
 
     echo('✔ Application source files has been output to: '.cyan + config.app_view);
     echo('✔ Public files has been output to: '.cyan + config.public_view);
