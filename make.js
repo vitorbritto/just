@@ -87,6 +87,6 @@ target.build = function() {
     echo('✔ Public files has been output to: '.cyan + config.public_view);
 
     // Lastly, avoiding to interrupt the process
-    rm('-rf', ['Makefile.js']);
+    rm('-rf', ['make.js']);
 
 };
