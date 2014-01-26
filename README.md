@@ -29,7 +29,7 @@ git clone git://github.com/vitorbritto/just.git projectname
 cd projectname
 ```
 
-3 - Run the makefile with `node make`
+3 - Run the makefile with `node make` <br/>
 4 - You're ready to go! :)
 
 ### Usage
