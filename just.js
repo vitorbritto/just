@@ -24,12 +24,6 @@ cmd
     .description('Create a basic Structure')
     .action(scaffold);
 
-// Install Dependencies
-cmd
-    .command('npm')
-    .description('Install dependencies')
-    .action(install);
-
 // Tasks
 cmd
     .command('run')
@@ -72,32 +66,6 @@ function scaffold() {
 
     sh.echo('✔ done'.green);
 
-}
-
-
-// =====================================================
-// Install dependencies
-// =====================================================
-
-function install() {
-
-    sh.echo('→ Installing'.cyan);
-
-    var dependencies = config.dependencies;
-
-    dependencies.forEach(function (deps) {
-            if (!sh.which(deps)) {
-                if (os === 'darwin') {
-                    sh.exec('sudo npm install -g ' + deps);
-                } else {
-                    sh.exec('npm install -g ' + deps);
-                }
-            } else {
-                sh.echo('→ ' + deps + ' already installed'.yellow);
-            }
-        });
-
-    sh.echo('✔ done'.green);
 }
 
 

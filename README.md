@@ -29,13 +29,13 @@ cd projectname
 3 - Install dependencies and make the script executable
 
 ```bash
-npm install
+// you need admin permission or use `sudo` to install dependencies
+npm i jshint stylus browser-sync uglify-js -g
 chmod u+x just.js
 ```
 
-4 - Install tasks dependencies: `./just.js npm` ! <br/>
-5 - Generate the scaffolding for your project: `./just.js build` ! <br/>
-6 - You're ready to go! :)
+4 - Generate the scaffolding for your project: `./just.js build` ! <br/>
+5 - You're ready to go! :)
 
 **Task Options**
 
