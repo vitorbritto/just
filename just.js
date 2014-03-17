@@ -7,7 +7,7 @@
 // Modules
 var sh     = require('shelljs'),
     cmd    = require('commander'),
-    config = require('./lib/config'),
+    config = require('./config'),
     Just   = require('orchestrator'),
     just   = new Just();
 
