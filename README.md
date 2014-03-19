@@ -41,7 +41,7 @@ cd projectname
 ### Configuration
 Feel free to change the configuration for paths to be whatever you want **before you run `node make`**. Just modify the `config` properties in `./lib/config.js` file.
 
-> Use `./just.js -h` for more details and instructions.
+> Use `./just.js --help` or `./just.js -h` for more details and instructions.
 
 
 ## Contributing
