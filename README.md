@@ -37,20 +37,23 @@ cd projectname
 - Build: `./just.js run`
 - Watch: `./just.js watch`
 
-
 ### Configuration
+
 Feel free to change the configuration for paths to be whatever you want **before you run `node make`**. Just modify the `config` properties in `./lib/config.js` file.
 
 > Use `./just.js --help` or `./just.js -h` for more details and instructions.
 
 
 ## Contributing
+
 Feel free to [contribute](https://github.com/vitorbritto/just/pulls) with this project or leave a [suggestion](https://github.com/vitorbritto/just/issues).
 
 
 ## Acknowledgments
+
 This script was inspired by [./task.js](https://gist.github.com/substack/8313379) and so many others articles from [dailyjs.com](http://dailyjs.com), [2ality](http://2ality.com) and [shapeshed.com](http://shapeshed.com).
 
 
 ## License
-Copyright (c) 2014 Vitor Britto Licensed under the [MIT license](LICENSE).
+
+[MIT License](http://vitorbritto.mit-license.org/) © Vitor Britto
