@@ -5,11 +5,11 @@
 // =====================================================
 
 // Modules
-var sh     = require('shelljs'),
-    cmd    = require('commander'),
-    config = require('./config'),
-    Just   = require('orchestrator'),
-    just   = new Just();
+var task = require('./config'),
+    sh   = require('shelljs'),
+    cmd  = require('commander'),
+    Just = require('orchestrator'),
+    just = new Just();
 
 require('colors');
 
@@ -46,9 +46,9 @@ function build() {
 
     // Script task
     just.add('build', function() {
-        config.jshint();
-        config.minify();
-        config.compile();
+        task.jshint();
+        task.minify();
+        task.compile();
     });
 
     // Run tasks
@@ -66,20 +66,19 @@ function watch() {
 
     // Watch task
     just.add('watch', function() {
-        config.refresh();
+        task.refresh();
     });
 
     // Watch task must be complete before this one begins
     just.add('build', ['watch'], function() {
-        config.jshint();
-        config.minify();
-        config.compile();
+        task.jshint();
+        task.minify();
+        task.compile();
     });
 
     // Run tasks
     just.start(['watch', 'build']);
 
     sh.echo('→ Watching for changes...'.cyan);
-    sh.echo('');
     sh.echo('→ Press CTRL+C to exit'.yellow);
 }
