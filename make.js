@@ -35,7 +35,9 @@ target.all = function() {
     target.executable();
     target.build();
 
-    echo('\n');
+    // Lastly, avoiding to interrupt the process
+    rm('-rf', ['make.js']);
+
     echo('✔ All done'.green);
 };
 
@@ -90,12 +92,16 @@ target.executable = function() {
 target.build = function() {
 
     // Create Structure
+    echo('→ Creating strcuture' .yellow);
+
     mkdir('-p', config.app_style);
     mkdir('-p', config.app_script);
     mkdir('-p', config.public_style);
     mkdir('-p', config.public_script);
 
     // Copy files
+    echo('→ Copying files' .yellow);
+
     cp('-rf', './lib/template/style.styl', config.app_style);
     cp('-rf', './lib/template/main.js', config.app_script);
     cp('-rf', './lib/template/index.html', config.public_view);
@@ -104,6 +110,7 @@ target.build = function() {
     cp('-rf', './lib/config.js', './');
 
     // Removing stuff you don't want
+    echo('→ Removing unecessary files' .yellow);
     rm('-rf', ['./.git', './lib' , '.gitignore', 'README.md', '.travis.yml', 'LICENSE']);
 
     echo('\n');
@@ -112,8 +119,5 @@ target.build = function() {
     echo('→ Public files has been output to: '.cyan + config.public_view);
     echo('----------------------------------------------------------------------');
     echo('\n');
-
-    // Lastly, avoiding to interrupt the process
-    rm('-rf', ['make.js']);
 
 };
