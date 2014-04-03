@@ -10,11 +10,13 @@ This build script is capable of processing and minifying Stylus files and compre
 
 **What's included?**
 
+- [CSSLint](https://npmjs.org/package/csslint)
 - [JSHint](https://npmjs.org/package/jshint)
 - [Uglify](https://npmjs.org/package/uglify-js)
 - [Stylus](https://npmjs.org/package/stylus)
 
 > This is a work in progress and I will likely add more functionality in the future.
+> Tested on Linux and OSX. =]
 
 
 ## Getting Started
