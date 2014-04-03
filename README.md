@@ -4,10 +4,6 @@
 
 Alright, I know. Another way to perform automation tasks. But it never hurts to have more options, right? :)
 
-**Features**
-
-This build script is capable of processing and minifying Stylus files and compressing and minifying JavaScript files.
-
 **What's included?**
 
 - [CSSLint](https://npmjs.org/package/csslint)
@@ -15,7 +11,13 @@ This build script is capable of processing and minifying Stylus files and compre
 - [Uglify](https://npmjs.org/package/uglify-js)
 - [Stylus](https://npmjs.org/package/stylus)
 
-> This is a work in progress and I will likely add more functionality in the future.
+**What you can do with Just:**
+
+- Compile and generate CSS files
+- Compress and Minify JavaScript files
+- Lint JavaScript and CSS files
+
+> This is a work in progress and I will likely add more functionality in the future. <br/>
 > Tested on Linux and OSX. =]
 
 
