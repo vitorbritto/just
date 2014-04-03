@@ -1,17 +1,46 @@
 #!/usr/bin/env node
 
+'use strict';
+
 // =====================================================
-// Initial Configuration
+// Modules
 // =====================================================
 
-// Modules
 var task = require('./tasks'),
     sh   = require('shelljs'),
     cmd  = require('commander'),
     Just = require('orchestrator'),
     just = new Just();
 
-require('colors');
+    require('colors');
+
+
+// =====================================================
+// Tasks Configuration
+// =====================================================
+
+var set = {
+
+    // Paths
+    app_view: './app/',
+    app_style: './app/styles/',
+    app_script: './app/scripts/',
+    public_view: './public/',
+    public_style: './public/styles/',
+    public_script: './public/scripts/',
+
+    // Server
+    server_host: 'localhost',
+    server_port: '3001',
+    server_base: './',
+    server_sync: true,
+    server_files: [
+        './app/styles/*.styl',
+        './app/scripts/*.js',
+        './public/*.html'
+    ]
+
+};
 
 
 // =====================================================
@@ -25,10 +54,10 @@ function build() {
 
     // Script task
     just.add('build', function() {
-        task.csslint();
-        task.jshint();
-        task.minify();
-        task.compile();
+        task.lint('csslint', set.app_style);
+        task.lint('jshint', set.app_script);
+        task.compile('uglify', set.app_style, set.public_style);
+        task.compile('stylus', set.app_script, set.public_script);
     });
 
     // Run tasks
@@ -46,15 +75,15 @@ function watch() {
 
     // Watch task
     just.add('watch', function() {
-        task.refresh();
+        task.refresh(set.server_base, set.server_files, set.server_sync, err);
     });
 
     // Watch task must be complete before this one begins
     just.add('build', ['watch'], function() {
-        task.csslint();
-        task.jshint();
-        task.minify();
-        task.compile();
+        task.lint('csslint', set.app_style);
+        task.lint('jshint', set.app_script);
+        task.compile('uglify', set.app_style, set.public_style);
+        task.compile('stylus', set.app_script, set.public_script);
     });
 
     // Run tasks
