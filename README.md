@@ -1,8 +1,6 @@
 ## Just - A ridiculously simple task runner [![Build Status](https://travis-ci.org/vitorbritto/just.png)](https://travis-ci.org/vitorbritto/just)
 
-> **TODO:** https://github.com/vitorbritto/just/issues
-
-<img src="http://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="right" height="266">
+<img src="http://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="right" height="300">
 
 Alright, I know. Another way to perform automation tasks. But it never hurts to have more options, right? :)
 
@@ -19,8 +17,9 @@ Alright, I know. Another way to perform automation tasks. But it never hurts to 
 - Compress and Minify JavaScript files
 - Lint JavaScript and CSS files
 
-> This is a work in progress and I will likely add more functionality in the future. Tested on Linux and OSX. =]
 
+> **NOTE:** this is a work in progress and I will likely add more functionality in the future. =] <br>
+> **TODO:** https://github.com/vitorbritto/just/issues
 
 ## Getting Started
 
