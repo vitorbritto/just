@@ -18,11 +18,11 @@ var system  = require('os').platform,
 
 var config  = {
     app_view:      './app/',
-    app_style:     './app/css/',
-    app_script:    './app/js/',
+    app_style:     './app/styles/',
+    app_script:    './app/scripts/',
     public_view:   './public/',
-    public_style:  './public/css/',
-    public_script: './public/js/',
+    public_style:  './public/styles/',
+    public_script: './public/scripts/',
 };
 
 
@@ -44,35 +44,35 @@ target.all = function() {
 target.npm = function() {
 
     if (!which('csslint')) {
-        echo('\n');
+        echo('');
         echo('→ Installing CSSLint...' .yellow);
         exec('npm i csslint -gq');
         echo('✔ CSSLint installed successfully.'.green);
     }
 
     if (!which('jshint')) {
-        echo('\n');
+        echo('');
         echo('→ Installing JSHint...' .yellow);
         exec('npm i jshint -gq');
         echo('✔ JSHint installed successfully.'.green);
     }
 
     if (!which('stylus')) {
-        echo('\n');
+        echo('');
         echo('→ Installing Stylus...' .yellow);
         exec('npm i stylus -gq');
         echo('✔ Stylus installed successfully.'.green);
     }
 
     if (!which('browser-sync')) {
-        echo('\n');
+        echo('');
         echo('→ Installing Browser Sync...' .yellow);
         exec('npm i browser-sync -gq');
         echo('✔ Browser Sync installed successfully.'.green);
     }
 
     if (!which('uglifyjs')) {
-        echo('\n');
+        echo('');
         echo('→ Installing Uglify JS...' .yellow);
         exec('npm i uglify-js -gq');
         echo('✔ Uglify JS installed successfully.'.green);
@@ -113,11 +113,11 @@ target.build = function() {
     echo('→ Removing unecessary files' .yellow);
     rm('-rf', ['./.git', './lib' , '.gitignore', 'README.md', '.travis.yml', 'LICENSE']);
 
-    echo('\n');
+    echo('');
     echo('----------------------------------------------------------------------');
     echo('→ Application source files has been output to: '.cyan + config.app_view);
     echo('→ Public files has been output to: '.cyan + config.public_view);
     echo('----------------------------------------------------------------------');
-    echo('\n');
+    echo('');
 
 };
