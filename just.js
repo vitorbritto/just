@@ -52,9 +52,9 @@ function build() {
     sh.echo('→ Runnning'.cyan);
     sh.echo('');
 
-    // Script task
+    // Build task
     just.add('build', function() {
-        task.lint('csslint', set.app_style);
+        // task.lint('csslint', set.public_style);
         task.lint('jshint', set.app_script);
         task.compile('uglify', set.app_style, set.public_style);
         task.compile('stylus', set.app_script, set.public_script);
@@ -80,7 +80,7 @@ function watch() {
 
     // Watch task must be complete before this one begins
     just.add('build', ['watch'], function() {
-        task.lint('csslint', set.app_style);
+        // task.lint('csslint', set.public_style);
         task.lint('jshint', set.app_script);
         task.compile('uglify', set.app_style, set.public_style);
         task.compile('stylus', set.app_script, set.public_script);
