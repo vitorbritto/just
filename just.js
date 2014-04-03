@@ -5,7 +5,7 @@
 // =====================================================
 
 // Modules
-var task = require('./config'),
+var task = require('./tasks'),
     sh   = require('shelljs'),
     cmd  = require('commander'),
     Just = require('orchestrator'),
@@ -13,27 +13,6 @@ var task = require('./config'),
 
 require('colors');
 
-// =====================================================
-// CLI Commands
-// =====================================================
-
-cmd
-    .command('run')
-    .description('Run lint, minify and compile tasks')
-    .action(build);
-
-cmd
-    .command('watch')
-    .description('Run build tasks and watch for changes')
-    .action(watch);
-
-
-// Config
-cmd.parse(process.argv);
-
-if (process.argv.length === 2) {
-    cmd.help();
-}
 
 // =====================================================
 // Build Task
@@ -46,6 +25,7 @@ function build() {
 
     // Script task
     just.add('build', function() {
+        task.csslint();
         task.jshint();
         task.minify();
         task.compile();
@@ -71,6 +51,7 @@ function watch() {
 
     // Watch task must be complete before this one begins
     just.add('build', ['watch'], function() {
+        task.csslint();
         task.jshint();
         task.minify();
         task.compile();
@@ -81,4 +62,27 @@ function watch() {
 
     sh.echo('→ Watching for changes...'.cyan);
     sh.echo('→ Press CTRL+C to exit'.yellow);
+}
+
+
+// =====================================================
+// CLI Commands
+// =====================================================
+
+cmd
+    .command('run')
+    .description('Run lint, minify and compile tasks')
+    .action(build);
+
+cmd
+    .command('watch')
+    .description('Run build tasks and watch for changes')
+    .action(watch);
+
+
+// Config
+cmd.parse(process.argv);
+
+if (process.argv.length === 2) {
+    cmd.help();
 }

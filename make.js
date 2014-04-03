@@ -30,6 +30,10 @@ target.all = function() {
 
 target.npm = function() {
 
+    if (!which('csslint')) {
+        exec('npm i csslint -g');
+    }
+
     if (!which('jshint')) {
         exec('npm i jshint -g');
     }
@@ -78,6 +82,8 @@ target.build = function() {
     cp('-rf', './lib/template/style.styl', config.app_style);
     cp('-rf', './lib/template/main.js', config.app_script);
     cp('-rf', './lib/template/index.html', config.public_view);
+    cp('-rf', './lib/template/.jshintrc', './');
+    cp('-rf', './lib/tasks.js', './');
     cp('-rf', './lib/config.js', './');
 
     // Removing stuff you don't want
