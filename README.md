@@ -43,7 +43,30 @@ cd projectname
 
 ### Configuration
 
-Feel free to change the configuration for paths to be whatever you want **before you run `node make`**. Just modify the `config` properties in `./lib/config.js` file.
+Feel free to change the configuration for paths and server to be whatever you want. Just modify the `server` and `path` properties in `./just.js` file.
+
+#### Default Configuration
+
+**Server**
+
+```
+host:  localhost
+port:  3001
+base:  ./
+sync:  true
+files: ./app/styles/*.styl, ./app/scripts/*.js, ./public/*.html'
+```
+
+**Paths**
+
+```
+view_in:    ./app/
+style_in:   ./app/styles/
+script_in:  ./app/scripts/
+view_out:   ./public/
+style_out:  ./public/styles/
+script_out: ./public/scripts/
+```
 
 > Use `./just.js --help` or `./just.js -h` for more details and instructions.
 

@@ -16,7 +16,7 @@ var system  = require('os').platform,
     isLinux = (system === 'linux'),
     isMac   = (system === 'darwin');
 
-var config  = {
+var config = {
     app_view:      './app/',
     app_style:     './app/styles/',
     app_script:    './app/scripts/',
@@ -45,35 +45,35 @@ target.npm = function() {
 
     if (!which('csslint')) {
         echo('');
-        echo('→ Installing CSSLint...' .yellow);
+        echo('→ Installing CSSLint...'.yellow);
         exec('npm i csslint -gq');
         echo('✔ CSSLint installed successfully.'.green);
     }
 
     if (!which('jshint')) {
         echo('');
-        echo('→ Installing JSHint...' .yellow);
+        echo('→ Installing JSHint...'.yellow);
         exec('npm i jshint -gq');
         echo('✔ JSHint installed successfully.'.green);
     }
 
     if (!which('stylus')) {
         echo('');
-        echo('→ Installing Stylus...' .yellow);
+        echo('→ Installing Stylus...'.yellow);
         exec('npm i stylus -gq');
         echo('✔ Stylus installed successfully.'.green);
     }
 
     if (!which('browser-sync')) {
         echo('');
-        echo('→ Installing Browser Sync...' .yellow);
+        echo('→ Installing Browser Sync...'.yellow);
         exec('npm i browser-sync -gq');
         echo('✔ Browser Sync installed successfully.'.green);
     }
 
     if (!which('uglifyjs')) {
         echo('');
-        echo('→ Installing Uglify JS...' .yellow);
+        echo('→ Installing Uglify JS...'.yellow);
         exec('npm i uglify-js -gq');
         echo('✔ Uglify JS installed successfully.'.green);
     }
@@ -92,7 +92,7 @@ target.executable = function() {
 target.build = function() {
 
     // Create Structure
-    echo('→ Creating strcuture' .yellow);
+    echo('→ Creating strcuture'.yellow);
 
     mkdir('-p', config.app_style);
     mkdir('-p', config.app_script);
@@ -100,17 +100,16 @@ target.build = function() {
     mkdir('-p', config.public_script);
 
     // Copy files
-    echo('→ Copying files' .yellow);
+    echo('→ Copying files'.yellow);
 
     cp('-rf', './lib/template/style.styl', config.app_style);
     cp('-rf', './lib/template/main.js', config.app_script);
     cp('-rf', './lib/template/index.html', config.public_view);
     cp('-rf', './lib/template/.*rc', './');
     cp('-rf', './lib/tasks.js', './');
-    cp('-rf', './lib/config.js', './');
 
     // Removing stuff you don't want
-    echo('→ Removing unecessary files' .yellow);
+    echo('→ Removing unecessary files'.yellow);
     rm('-rf', ['./.git', './lib' , '.gitignore', 'README.md', '.travis.yml', 'LICENSE']);
 
     echo('');

@@ -7,39 +7,39 @@
 // =====================================================
 
 var task = require('./tasks'),
-    sh   = require('shelljs'),
-    cmd  = require('commander'),
-    Just = require('orchestrator'),
-    just = new Just();
+    sh    = require('shelljs'),
+    cmd   = require('commander'),
+    Just  = require('orchestrator'),
+    just  = new Just();
 
-    require('colors');
+require('colors');
 
 
 // =====================================================
 // Tasks Configuration
 // =====================================================
 
-var set = {
-
-    // Paths
-    app_view: './app/',
-    app_style: './app/styles/',
-    app_script: './app/scripts/',
-    public_view: './public/',
-    public_style: './public/styles/',
-    public_script: './public/scripts/',
-
-    // Server
-    server_host: 'localhost',
-    server_port: '3001',
-    server_base: './',
-    server_sync: true,
-    server_files: [
+// Setup for Server
+var server = {
+    host: 'localhost',
+    port: '3001',
+    base: './public',
+    sync: true,
+    files: [
         './app/styles/*.styl',
         './app/scripts/*.js',
-        './public/*.html'
+        './app/*.html'
     ]
+};
 
+// Setup for Paths
+var path = {
+    view_in:    './app/',
+    style_in:   './app/styles/',
+    script_in:  './app/scripts/',
+    view_out:   './public/',
+    style_out:  './public/styles/',
+    script_out: './public/scripts/',
 };
 
 
@@ -53,17 +53,19 @@ function build() {
     sh.echo('');
 
     // Build task
-    just.add('build', function() {
-        // task.lint('csslint', set.public_style);
-        task.lint('jshint', set.app_script);
-        task.compile('uglify', set.app_style, set.public_style);
-        task.compile('stylus', set.app_script, set.public_script);
-    });
+    just.add('build',
+        task.lint('csslint', path.style_out),
+        task.lint('jshint', path.script_in),
+        task.compile('uglify', path.script_in, path.script_out),
+        task.compile('stylus', path.style_in, path.style_out)
+    );
 
     // Run tasks
-    just.start(['build']);
+    just.start(['build'], function(){
+        sh.echo('✔ done'.green);
+    });
 
-    sh.echo('✔ done'.green);
+
 }
 
 
@@ -73,24 +75,26 @@ function build() {
 
 function watch() {
 
-    // Watch task
-    just.add('watch', function() {
-        task.refresh(set.server_base, set.server_files, set.server_sync, err);
-    });
-
-    // Watch task must be complete before this one begins
-    just.add('build', ['watch'], function() {
-        // task.lint('csslint', set.public_style);
-        task.lint('jshint', set.app_script);
-        task.compile('uglify', set.app_style, set.public_style);
-        task.compile('stylus', set.app_script, set.public_script);
-    });
-
-    // Run tasks
-    just.start(['watch', 'build']);
-
+    // Start Message
     sh.echo('→ Watching for changes...'.cyan);
     sh.echo('→ Press CTRL+C to exit'.yellow);
+
+    // Watch task
+    just.add('watch',
+        task.refresh(server.base, server.files, server.sync)
+    );
+
+    // Build task must be complete before this one begins
+    just.add('watch', ['build'],
+        task.lint('csslint', path.style_out),
+        task.lint('jshint', path.script_in),
+        task.compile('uglify', path.style_in, path.style_out),
+        task.compile('stylus', path.script_in, path.script_out)
+    );
+
+    // Run tasks
+    just.start('build', 'watch');
+
 }
 
 
