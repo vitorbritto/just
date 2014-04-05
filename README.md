@@ -38,24 +38,15 @@ cd projectname
 
 ### Usage
 
-- Build: `./just.js run`
-- Watch: `./just.js watch`
+- Build: `./just.js all`
+- Optimize CSS: `./just.js css`
+- Optimize JS: `./just.js js`
 
 ### Configuration
 
-Feel free to change the configuration for paths and server to be whatever you want. Just modify the `server` and `path` properties in `./just.js` file.
+Feel free to change the configuration for paths and server to be whatever you want. Just modify the `path` properties in `./just.js` file.
 
 #### Default Configuration
-
-**Server**
-
-```
-host:  localhost
-port:  3001
-base:  ./
-sync:  true
-files: ./app/styles/*.styl, ./app/scripts/*.js, ./public/*.html'
-```
 
 **Paths**
 
