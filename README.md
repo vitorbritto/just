@@ -54,9 +54,9 @@ Feel free to change the configuration for paths and server to be whatever you wa
 view_in:    ./app/
 style_in:   ./app/styles/
 script_in:  ./app/scripts/
-view_out:   ./public/
-style_out:  ./public/styles/
-script_out: ./public/scripts/
+view_out:   ./dist/
+style_out:  ./dist/styles/
+script_out: ./dist/scripts/
 ```
 
 > Use `./just.js --help` or `./just.js -h` for more details and instructions.
