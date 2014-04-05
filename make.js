@@ -17,12 +17,12 @@ var system  = require('os').platform,
     isMac   = (system === 'darwin');
 
 var config = {
-    app_view:      './app/',
-    app_style:     './app/styles/',
-    app_script:    './app/scripts/',
-    public_view:   './public/',
-    public_style:  './public/styles/',
-    public_script: './public/scripts/',
+    src_view:    './app/',
+    src_style:   './app/styles/',
+    src_script:  './app/scripts/',
+    dist_view:   './dist/',
+    dist_style:  './dist/styles/',
+    dist_script: './dist/scripts/',
 };
 
 
@@ -64,13 +64,6 @@ target.npm = function() {
         echo('✔ Stylus installed successfully.'.green);
     }
 
-    if (!which('browser-sync')) {
-        echo('');
-        echo('→ Installing Browser Sync...'.yellow);
-        exec('npm i browser-sync -gq');
-        echo('✔ Browser Sync installed successfully.'.green);
-    }
-
     if (!which('uglifyjs')) {
         echo('');
         echo('→ Installing Uglify JS...'.yellow);
@@ -94,17 +87,17 @@ target.build = function() {
     // Create Structure
     echo('→ Creating strcuture'.yellow);
 
-    mkdir('-p', config.app_style);
-    mkdir('-p', config.app_script);
-    mkdir('-p', config.public_style);
-    mkdir('-p', config.public_script);
+    mkdir('-p', config.src_style);
+    mkdir('-p', config.src_script);
+    mkdir('-p', config.dist_style);
+    mkdir('-p', config.dist_script);
 
     // Copy files
     echo('→ Copying files'.yellow);
 
-    cp('-rf', './lib/template/style.styl', config.app_style);
-    cp('-rf', './lib/template/main.js', config.app_script);
-    cp('-rf', './lib/template/index.html', config.public_view);
+    cp('-rf', './lib/template/style.styl', config.src_style);
+    cp('-rf', './lib/template/main.js', config.src_script);
+    cp('-rf', './lib/template/index.html', config.dist_view);
     cp('-rf', './lib/template/.*rc', './');
     cp('-rf', './lib/tasks.js', './');
 
@@ -114,8 +107,8 @@ target.build = function() {
 
     echo('');
     echo('----------------------------------------------------------------------');
-    echo('→ Application source files has been output to: '.cyan + config.app_view);
-    echo('→ Public files has been output to: '.cyan + config.public_view);
+    echo('→ srclication source files has been output to: '.cyan + config.src_view);
+    echo('→ dist files has been output to: '.cyan + config.dist_view);
     echo('----------------------------------------------------------------------');
     echo('');
 

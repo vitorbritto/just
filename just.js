@@ -2,9 +2,9 @@
 
 'use strict';
 
-// =====================================================
-// Modules
-// =====================================================
+// =======
+// MODULES
+// =======
 
 var task = require('./tasks'),
     sh    = require('shelljs'),
@@ -15,44 +15,30 @@ var task = require('./tasks'),
 require('colors');
 
 
-// =====================================================
-// Tasks Configuration
-// =====================================================
+// ======
+// CONFIG
+// ======
 
-// Setup for Server
-var server = {
-    host: 'localhost',
-    port: '3001',
-    base: './public',
-    sync: true,
-    files: [
-        './app/styles/*.styl',
-        './app/scripts/*.js',
-        './app/*.html'
-    ]
-};
-
-// Setup for Paths
 var path = {
     view_in:    './app/',
     style_in:   './app/styles/',
     script_in:  './app/scripts/',
-    view_out:   './public/',
-    style_out:  './public/styles/',
-    script_out: './public/scripts/',
+    view_out:   './dist/',
+    style_out:  './dist/styles/',
+    script_out: './dist/scripts/',
 };
 
 
 // =====================================================
-// Build Task
+// TASKS
 // =====================================================
 
+// Build task
 function build() {
 
     sh.echo('→ Runnning'.cyan);
     sh.echo('');
 
-    // Build task
     just.add('build',
         task.lint('csslint', path.style_out),
         task.lint('jshint', path.script_in),
@@ -60,57 +46,62 @@ function build() {
         task.compile('stylus', path.style_in, path.style_out)
     );
 
-    // Run tasks
     just.start(['build'], function(){
         sh.echo('✔ done'.green);
     });
-
-
 }
 
+// Optimize CSS files → Lint, Minify and Concatenate
+function optimizestyles() {
 
-// =====================================================
-// Watch Task
-// =====================================================
+    sh.echo('→ Runnning'.cyan);
+    sh.echo('');
 
-function watch() {
-
-    // Start Message
-    sh.echo('→ Watching for changes...'.cyan);
-    sh.echo('→ Press CTRL+C to exit'.yellow);
-
-    // Watch task
-    just.add('watch',
-        task.refresh(server.base, server.files, server.sync)
-    );
-
-    // Build task must be complete before this one begins
-    just.add('watch', ['build'],
+    just.add('styles',
         task.lint('csslint', path.style_out),
-        task.lint('jshint', path.script_in),
-        task.compile('uglify', path.style_in, path.style_out),
-        task.compile('stylus', path.script_in, path.script_out)
+        task.compile('stylus', path.style_in, path.style_out)
     );
 
-    // Run tasks
-    just.start('build', 'watch');
+    just.start(['styles'], function(){
+        sh.echo('✔ done'.green);
+    });
+}
 
+// Optimize JS files → Lint, Minify and Concatenate
+function optimizeScripts() {
+
+    sh.echo('→ Runnning'.cyan);
+    sh.echo('');
+
+    just.add('scripts',
+        task.lint('jshint', path.script_in),
+        task.compile('uglify', path.script_in, path.script_out)
+    );
+
+    just.start(['scripts'], function(){
+        sh.echo('✔ done'.green);
+    });
 }
 
 
 // =====================================================
-// CLI Commands
+// CLI COMMANDS
 // =====================================================
 
 cmd
-    .command('run')
-    .description('Run lint, minify and compile tasks')
+    .command('all')
+    .description('Compile, Lint, Minify and Concatenate all files')
     .action(build);
 
 cmd
-    .command('watch')
-    .description('Run build tasks and watch for changes')
-    .action(watch);
+    .command('css')
+    .description('Optimize CSS files')
+    .action(optimizestyles);
+
+cmd
+    .command('js')
+    .description('Optimize JS/CSS and copy files to deploy')
+    .action(optimizeScripts);
 
 
 // Config
