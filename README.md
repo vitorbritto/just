@@ -1,6 +1,6 @@
 ## Just - A ridiculously simple task runner [![Build Status](https://travis-ci.org/vitorbritto/just.png)](https://travis-ci.org/vitorbritto/just)
 
-<img src="http://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="right" height="300">
+<img src="http://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="right" height="220">
 
 Alright, I know. Another way to perform automation tasks. But it never hurts to have more options, right? :)
 
