@@ -1,4 +1,4 @@
-## Just - A simple task runner on top of NodeJS. [![Build Status](https://travis-ci.org/vitorbritto/just.png)](https://travis-ci.org/vitorbritto/just)
+## Just - A ridiculously simple task runner [![Build Status](https://travis-ci.org/vitorbritto/just.png)](https://travis-ci.org/vitorbritto/just)
 
 <img src="http://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="right" height="300">
 
