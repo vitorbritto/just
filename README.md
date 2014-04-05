@@ -48,8 +48,6 @@ Feel free to change the configuration for paths and server to be whatever you wa
 
 #### Default Configuration
 
-**Paths**
-
 ```
 view_in:    ./app/
 style_in:   ./app/styles/
