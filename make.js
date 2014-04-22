@@ -87,10 +87,7 @@ target.build = function() {
     // Create Structure
     echo('→ Creating strcuture'.yellow);
 
-    mkdir('-p', config.src_style);
-    mkdir('-p', config.src_script);
-    mkdir('-p', config.dist_style);
-    mkdir('-p', config.dist_script);
+    mkdir('-p', [config.src_style, config.src_script, config.dist_style, config.dist_script]);
 
     // Copy files
     echo('→ Copying files'.yellow);
@@ -106,10 +103,10 @@ target.build = function() {
     rm('-rf', ['./.git', './lib' , '.gitignore', 'README.md', '.travis.yml', 'LICENSE']);
 
     echo('');
-    echo('----------------------------------------------------------------------');
-    echo('→ srclication source files has been output to: '.cyan + config.src_view);
-    echo('→ dist files has been output to: '.cyan + config.dist_view);
-    echo('----------------------------------------------------------------------');
+    echo('-----------------------------------------------------------');
+    echo('→ Aplication source files at: '.cyan + config.src_view);
+    echo('→ Public files at: '.cyan + config.dist_view);
+    echo('-----------------------------------------------------------');
     echo('');
 
 };

@@ -6,11 +6,12 @@
 // MODULES
 // =======
 
-var task = require('./tasks'),
-    sh    = require('shelljs'),
+var sh    = require('shelljs'),
     cmd   = require('commander'),
     Just  = require('orchestrator'),
-    just  = new Just();
+    Task  = require('./tasks'),
+    just  = new Just(),
+    task  = new Task();
 
 require('colors');
 
@@ -37,14 +38,13 @@ var path = {
 function build() {
 
     sh.echo('→ Runnning'.cyan);
-    sh.echo('');
 
-    just.add('build',
-        task.lint('csslint', path.style_out),
-        task.lint('jshint', path.script_in),
-        task.compile('uglify', path.script_in, path.script_out),
-        task.compile('stylus', path.style_in, path.style_out)
-    );
+    just.add('build', function() {
+        task.lint('csslint', path.style_out)
+            .lint('jshint', path.script_in)
+            .compile('uglify', path.script_in, path.script_out)
+            .compile('stylus', path.style_in, path.style_out);
+    });
 
     just.start(['build'], function(){
         sh.echo('✔ done'.green);
@@ -55,12 +55,11 @@ function build() {
 function optimizestyles() {
 
     sh.echo('→ Runnning'.cyan);
-    sh.echo('');
 
-    just.add('styles',
-        task.lint('csslint', path.style_out),
-        task.compile('stylus', path.style_in, path.style_out)
-    );
+    just.add('styles', function(){
+        task.lint('csslint', path.style_out)
+            .compile('stylus', path.style_in, path.style_out);
+    });
 
     just.start(['styles'], function(){
         sh.echo('✔ done'.green);
@@ -71,12 +70,11 @@ function optimizestyles() {
 function optimizeScripts() {
 
     sh.echo('→ Runnning'.cyan);
-    sh.echo('');
 
-    just.add('scripts',
-        task.lint('jshint', path.script_in),
-        task.compile('uglify', path.script_in, path.script_out)
-    );
+    just.add('scripts', function(){
+        task.lint('jshint', path.script_in)
+            .compile('uglify', path.script_in, path.script_out);
+    });
 
     just.start(['scripts'], function(){
         sh.echo('✔ done'.green);
