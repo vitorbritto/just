@@ -36,7 +36,7 @@ So far, **Just** can execute these following tasks:
 
 ## Getting Started
 
-1 - First of all, make sure you have [Node.js](http://nodejs.org/) installed.
+1 - First of all, make sure you have [Node.js](http://nodejs.org/) installed. </br>
 2 - Clone this repository and create your project folder
 
 ```bash
@@ -44,7 +44,7 @@ $ git clone git://github.com/vitorbritto/just.git projectname
 $ cd projectname
 ```
 
-3 - Run the makefile with `node make` to build an initial structure. _(optional)_
+3 - Run the makefile with `node make` to build an initial structure. _(optional)_ </br>
 4 - Profit! :)
 
 ## Usage
