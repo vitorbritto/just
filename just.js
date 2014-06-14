@@ -1,105 +1,137 @@
 #!/usr/bin/env node
 
+/*
+ * Copyright 2014, All Rights Reserved.
+ *
+ * Code licensed under the MIT License:
+ * http://vitorbritto.mit-license.org/
+ *
+ * Author: Vitor Britto <code@vitorbritto.com.br>
+ */
+
 'use strict';
 
-// =====================================================
+// ============================================================================
 // MODULES
-// =====================================================
+// ============================================================================
 
-var sh    = require('shelljs'),
-    cmd   = require('commander'),
-    Just  = require('orchestrator'),
-    Task  = require('./tasks'),
-    just  = new Just(),
-    task  = new Task();
-
-require('colors');
+var task   = require('./lib/tasks'),
+    config = require('./lib/config'),
+    log    = require('./lib/logs'),
+    cmd    = require('commander'),
+    Just   = require('orchestrator'),
+    just   = new Just();
 
 
-// =====================================================
-// CONFIG
-// =====================================================
-
-var path = {
-    view_in:    './app/',
-    style_in:   './app/styles/',
-    script_in:  './app/scripts/',
-    view_out:   './dist/',
-    style_out:  './dist/styles/',
-    script_out: './dist/scripts/',
-};
-
-
-// =====================================================
+// ============================================================================
 // TASKS
-// =====================================================
+// ============================================================================
+
+// USING TRANSFORMS IN BROWSERIFY
+//
+// Optionally you could add transforms. At "config.js"
+// file located inside ./lib folder, edit the "transforms"
+// property to reflect your needs. Then, pass "config.transforms"
+// as a param to .browserify() method
+//
+// Example:
+//     .browserify(config.script.src, config.script.dest, config.transforms)
 
 // Build task
-function build() {
+function buildApp() {
 
-    sh.echo('→ Runnning'.cyan);
+    log.info('Runnning task');
 
     just.add('build', function() {
-        task.lint('csslint', path.style_out)
-            .lint('jshint', path.script_in)
-            .compile('uglify', path.script_in, path.script_out)
-            .compile('stylus', path.style_in, path.style_out);
+        task
+            .csslint(config.style.dest)
+            .jshint(config.script.src)
+            .browserify(config.script.src, config.script.dest)
+            .uglifyjs(config.script.dest, config.script.min)
+            .stylus(config.style.src, config.style.dest);
     });
 
-    just.start(['build'], function(){
-        sh.echo('✔ done'.green);
+    just.start(['build'], function() {
+        log.done('Task complete!');
     });
+
 }
 
-// Optimize CSS files → Lint, Minify and Concatenate
-function optimizestyles() {
+// Process CSS files → Lint, Minify and Concatenate
+function processStyles() {
 
-    sh.echo('→ Runnning'.cyan);
+    log.info('Runnning task');
 
-    just.add('styles', function(){
-        task.lint('csslint', path.style_out)
-            .compile('stylus', path.style_in, path.style_out);
+    just.add('styles', function() {
+        task
+            .csslint(config.style.dest)
+            .stylus(config.style.src, config.style.dest);
     });
 
-    just.start(['styles'], function(){
-        sh.echo('✔ done'.green);
+    just.start(['styles'], function() {
+        log.done('Task complete!');
     });
+
 }
 
-// Optimize JS files → Lint, Minify and Concatenate
-function optimizeScripts() {
+// Process JS files → Lint, Minify and Concatenate
+function processScripts() {
 
-    sh.echo('→ Runnning'.cyan);
+    log.info('Runnning task');
 
-    just.add('scripts', function(){
-        task.lint('jshint', path.script_in)
-            .compile('uglify', path.script_in, path.script_out);
+    just.add('scripts', function() {
+        task
+            .jshint(config.script.src)
+            .browserify(config.script.src, config.script.dest)
+            .uglifyjs(config.script.dest, config.script.min);
     });
 
-    just.start(['scripts'], function(){
-        sh.echo('✔ done'.green);
+    just.start(['scripts'], function() {
+        log.done('Task complete!');
     });
+
+}
+
+// Execute Unit Tests
+function processTests() {
+
+    log.info('Runnning task');
+
+    just.add('spec', function() {
+        task.mocha(config.spec.src, config.spec.reporter);
+    });
+
+    just.start(['spec'], function() {
+        log.done('Task complete!');
+    });
+
 }
 
 
-// =====================================================
+
+// ============================================================================
 // CLI COMMANDS
-// =====================================================
+// ============================================================================
 
 cmd
-    .command('all')
+    .command('build')
     .description('Compile, Lint, Minify and Concatenate all files')
-    .action(build);
+    .action(buildApp);
 
 cmd
-    .command('css')
-    .description('Optimize CSS files')
-    .action(optimizestyles);
+    .command('style')
+    .description('Process CSS files')
+    .action(processStyles);
 
 cmd
-    .command('js')
-    .description('Optimize JS/CSS and copy files to deploy')
-    .action(optimizeScripts);
+    .command('script')
+    .description('Process JS files')
+    .action(processScripts);
+
+cmd
+    .command('spec')
+    .description('Execute Unit Tests')
+    .action(processTests);
 
 
 // Config
