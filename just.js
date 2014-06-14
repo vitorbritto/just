@@ -18,6 +18,7 @@
 var task   = require('./lib/tasks'),
     config = require('./lib/config'),
     log    = require('./lib/logs'),
+    pkg    = require('./package'),
     cmd    = require('commander'),
     Just   = require('orchestrator'),
     just   = new Just();
@@ -112,6 +113,9 @@ function processTests() {
 // ============================================================================
 // CLI COMMANDS
 // ============================================================================
+
+cmd
+    .version('Just v.' + pkg.version, '-v, --version');
 
 cmd
     .command('build')
