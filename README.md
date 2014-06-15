@@ -1,7 +1,5 @@
 # Just - A simple task runner [![Build Status](https://travis-ci.org/vitorbritto/just.svg)](https://travis-ci.org/vitorbritto/just)
 
-<img src="http://www.vitorbritto.com.br/just/assets/images/logo.png" alt="Just" align="right">
-
 Currently, there are some great task runners and build tools to perform common tasks. The use of these tools to automate tasks is really awesome but falls short in some aspects and process. **Just** not intend to compete with Grunt, Gulp or Brocolli.
 
 **Just** has a simple purpose and was developed based in personal needs to perform common tasks in my workflow on a simple way, far from extensive configuration files and a lightning-fast way to build my apps.
